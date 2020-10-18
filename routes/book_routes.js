@@ -1,22 +1,22 @@
 const router = require("express").Router();
 
-router.post("/book", (req, res) => {
+router.post("/books", (req, res) => {
   res.status(200).json({ success: true, message: "A book is created" });
 });
 
-router.get("/", (req, res) => {
+router.get("/books", (req, res) => {
   res.status(200).json({ success: true, message: "Get all books" });
 });
 
-router.get("/book/:id", (req, res) => {
+router.get("/books/:id", (req, res) => {
   res.status(200).json({ success: true, message: "Get single book" });
 });
 
-router.put("/book/:id", (req, res) => {
+router.put("/books/:id", (req, res) => {
   res.status(200).json({ sucess: true, message: "A book is updated" });
 });
 
-router.delete("/book/:id", (req, res) => {
+router.delete("/books/:id", (req, res) => {
   res.status(200).json({ sucess: true, message: "A book is deleted" });
 });
 
