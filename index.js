@@ -1,6 +1,7 @@
 const express = require("express");
 const router = require("./routes/book_routes");
 const app = express();
+const cors = require("cors");
 // const router = express.Router();
 app.use(express.json());
 
@@ -15,7 +16,7 @@ app.use("/movies", (req, res, next) => {
 //   //res.status(200).json({ sucess: true });
 //   res.send("hello");
 // });
-
+app.use(cors());
 app.use(router); // router middleware have to called with app.use to work
 
 app.listen(5001, () => {
