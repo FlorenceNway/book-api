@@ -1,24 +1,35 @@
 const router = require("express").Router();
+const {
+  createBook,
+  getAllBooks,
+  getSingleBook,
+  updateBook,
+  deleteBook,
+} = require("../controllers/book_controller");
 
-router.post("/books", (req, res) => {
-  res.status(200).json({ success: true, message: "A book is created" });
-});
+router.route("/").post(createBook).get(getAllBooks);
 
-router.get("/books", (req, res) => {
-  res.status(200).json({ success: true, message: "Get all books" });
-});
+router.route("/:id").get(getSingleBook).put(updateBook).delete(deleteBook);
 
-router.get("/books/:id", (req, res) => {
-  res.status(200).json({ success: true, message: "Get single book" });
-});
+// router.post("/books", (req, res) => {
+//   res.status(200).json({ success: true, message: "A book is created" });
+// });
 
-router.put("/books/:id", (req, res) => {
-  res.status(200).json({ sucess: true, message: "A book is updated" });
-});
+// router.get("/books", (req, res) => {
+//   res.status(200).json({ success: true, message: "Get all books" });
+// });
 
-router.delete("/books/:id", (req, res) => {
-  res.status(200).json({ sucess: true, message: "A book is deleted" });
-});
+// router.get("/books/:id", (req, res) => {
+//   res.status(200).json({ success: true, message: "Get single book" });
+// });
+
+// router.put("/books/:id", (req, res) => {
+//   res.status(200).json({ sucess: true, message: "A book is updated" });
+// });
+
+// router.delete("/books/:id", (req, res) => {
+//   res.status(200).json({ sucess: true, message: "A book is deleted" });
+// });
 
 module.exports = router;
 
