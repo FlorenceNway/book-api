@@ -10,7 +10,6 @@ const BookSchema = new mongoose.Schema({
     type: String,
     maxlength: [500, "Please do not exceed 500 characters"],
   },
-  createdAt: Date.now
 });
 
 module.exports = mongoose.model("Book", BookSchema);
