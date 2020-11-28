@@ -1,6 +1,7 @@
 const express = require("express");
 const book_routes = require("./routes/book_routes");
 const app = express();
+const dotenv = require("dotenv");
 const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -21,6 +22,10 @@ const logger = require("./middleware/logger");
 //   //res.status(200).json({ sucess: true });
 //   res.send("hello");
 // });
+
+// load env var
+dotenv.config({ path: "./config/config.env" });
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use(logger);
@@ -28,7 +33,7 @@ app.use(morgan()); // morgan can output the errors
 
 // app.use(router); // router middleware have to called with app.use to work
 moongoose.connect(
-  "mongodb+srv://root:floDB02!@books-db.hsc69.mongodb.net/books-DB?retryWrites=true&w=majority",
+  process.env.DB_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -40,7 +45,7 @@ moongoose.connect(
 app.use("/api/books", book_routes);
 app.use(errorHandler);
 
-app.listen(5001, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is running at 5001");
 });
 
