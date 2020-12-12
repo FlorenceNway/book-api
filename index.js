@@ -33,7 +33,8 @@ app.use(morgan()); // morgan can output the errors
 
 // app.use(router); // router middleware have to called with app.use to work
 moongoose.connect(
-  process.env.DB_URL,
+  // process.env.DB_URL,
+  "mongodb+srv://root:floDB02!@books-db.hsc69.mongodb.net/books-DB?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -45,7 +46,7 @@ moongoose.connect(
 app.use("/api/books", book_routes);
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
+app.listen(5001, () => {
   console.log("Server is running at 5001");
 });
 
