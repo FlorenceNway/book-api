@@ -10,6 +10,10 @@ exports.register = async (req, res, next) => {
         .status(400)
         .json({ success: false, message: error.details[0].message });
     }
+
+    const isExistUser = await User.findOne({ email: req.body.email });
+    if (isExistUser) return res.status(400).send("User already existed.");
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     console.log("hashpw ==> ", hashedPassword);
