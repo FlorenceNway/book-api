@@ -1,5 +1,6 @@
 const express = require("express");
 const book_routes = require("./routes/book_routes");
+const auth_routes = require("./routes/auth_routes");
 const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -43,6 +44,7 @@ moongoose.connect(
     console.log("Database is connected! ");
   }
 );
+app.use("/api/users", auth_routes);
 app.use("/api/books", book_routes);
 app.use(errorHandler);
 
