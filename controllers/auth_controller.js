@@ -47,8 +47,12 @@ exports.login = async (req, res, next) => {
     );
     if (!validatePassword) return res.status(400).send("Password is incorrect");
 
-    res.send("LOGIN SUCCESS");
+    // res.send("LOGIN SUCCESS"); (no need anymoe if we use JWT)
 
+    // Create jwt token
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN);
+    console.log("token: ", token);
+    res.header("auth-token", token).send(token);
     // Create jwt token
   } catch (error) {
     next(error);
