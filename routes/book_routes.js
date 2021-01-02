@@ -1,3 +1,4 @@
+const verify = require("../utils/verifyToken");
 const router = require("express").Router();
 const {
   createBook,
@@ -7,11 +8,15 @@ const {
   deleteBook,
 } = require("../controllers/book_controller");
 
-router.route("/").post(createBook).get(getAllBooks);
+router.route("/").post(verify, createBook).get(verify, getAllBooks);
 
-router.route("/:id").get(getSingleBook).put(updateBook).delete(deleteBook);
+router
+  .route("/:id", verify)
+  .get(verify, getSingleBook)
+  .put(verify, updateBook)
+  .delete(verify, deleteBook);
 
-// router.post("/books", (req, res) => {
+// router.post("/books", *verify*,  (req, res) => {
 //   res.status(200).json({ success: true, message: "A book is created" });
 // });
 
